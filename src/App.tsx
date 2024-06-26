@@ -15,8 +15,16 @@ const App = () => {
     fetchData();
   }, []);
   return (
-    <div>
-      <CountryList countries={countries} />
+    <div className="bg-gray-200">
+      <div className="container mx-auto p-6">
+        <h2 className="text-2xl font-semibold text-center mt-12">
+          Favorite Countries
+        </h2>
+        <div>
+          <h1 className="text-3xl font-bold text-center mb-8">Countries</h1>
+          <CountryList countries={countries} />
+        </div>
+      </div>
     </div>
   );
 };

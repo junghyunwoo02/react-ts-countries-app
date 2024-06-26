@@ -5,7 +5,7 @@ import { Country } from "./types/types";
 import CountryCard from "./components/CountryCard";
 
 const App: React.FC = () => {
-  const [countries, setCountries] = useState<Country[]>([]); // 상태에 저장되는 데이터가 Country배열?
+  const [countries, setCountries] = useState<Country[]>([]);
   const [selectedCountries, setSelectedCountries] = useState<Country[]>([]);
 
   useEffect(() => {

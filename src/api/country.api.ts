@@ -6,7 +6,7 @@ export const fetchCountry = async (): Promise<Country[]> => {
     const res = await axios.get<Country[]>(
       "https://restcountries.com/v3.1/all"
     );
-    console.log("res.data ===> ", res.data);
+
     return res.data;
   } catch (err) {
     console.log(err);

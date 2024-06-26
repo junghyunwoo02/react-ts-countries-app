@@ -1,40 +1,39 @@
 import { useEffect, useState } from "react";
 import { fetchCountry } from "./api/country.api";
 import CountryList from "./components/CountryList";
-import { Country } from "./types/types";
+import { ExtendedCountry } from "./types/types";
 import CountryCard from "./components/CountryCard";
 
 const App: React.FC = () => {
-  const [countries, setCountries] = useState<Country[]>([]);
-  const [selectedCountries, setSelectedCountries] = useState<Country[]>([]);
+  const [countries, setCountries] = useState<ExtendedCountry[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchCountry();
-      setCountries(data);
+      const extendedData = data.map((country) => ({
+        ...country,
+        isSelected: false,
+      }));
+      setCountries(extendedData);
     };
 
     fetchData();
   }, []);
 
-  const handleCountryClick = (country: Country) => {
-    if (selectedCountries.some((c) => c.name.common === country.name.common)) {
-      setSelectedCountries((prevSelectedCountries) =>
-        prevSelectedCountries.filter(
-          (c) => c.name.common !== country.name.common
-        )
-      );
-      setCountries((prevCountries) => [...prevCountries, country]);
-    } else {
-      setCountries((prevCountries) =>
-        prevCountries.filter((c) => c.name.common !== country.name.common)
-      );
-      setSelectedCountries((prevSelectedCountries) => [
-        ...prevSelectedCountries,
-        country,
-      ]);
-    }
+  const handleCountryClick = (country: ExtendedCountry) => {
+    setCountries((prevCountries) =>
+      prevCountries.map((c) =>
+        c.name.common === country.name.common
+          ? { ...c, isSelected: !c.isSelected }
+          : c
+      )
+    );
   };
+
+  const selectedCountries = countries.filter((country) => country.isSelected);
+  const unselectedCountries = countries.filter(
+    (country) => !country.isSelected
+  );
 
   return (
     <div className="bg-gray-200">
@@ -56,7 +55,7 @@ const App: React.FC = () => {
         <div>
           <h1 className="text-3xl font-bold text-center mb-8">Countries</h1>
           <CountryList
-            countries={countries}
+            countries={unselectedCountries}
             handleCountryClick={handleCountryClick}
           />
         </div>

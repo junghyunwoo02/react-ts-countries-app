@@ -7,3 +7,7 @@ export interface Country {
     svg: string;
   };
 }
+
+export interface ExtendedCountry extends Country {
+  isSelected: boolean;
+}

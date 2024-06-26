@@ -1,9 +1,9 @@
-import { Country } from "../types/types";
+import { ExtendedCountry } from "../types/types";
 import CountryCard from "./CountryCard";
 
 interface ownProps {
-  countries: Country[];
-  handleCountryClick: (country: Country) => void;
+  countries: ExtendedCountry[];
+  handleCountryClick: (country: ExtendedCountry) => void;
 }
 
 const CountryList: React.FC<ownProps> = ({ countries, handleCountryClick }) => {

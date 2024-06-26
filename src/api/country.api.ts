@@ -1,10 +1,10 @@
 import axios from "axios";
 import { Country } from "../types/types";
 
-export const fetchCountry = async (): Promise<Country[]> => {
+export const fetchCountries = async (): Promise<Country[]> => {
   try {
     const res = await axios.get<Country[]>(
-      "https://restcountries.com/v3.1/all"
+      import.meta.env.VITE_COUNTRY_API_URL
     );
 
     return res.data;

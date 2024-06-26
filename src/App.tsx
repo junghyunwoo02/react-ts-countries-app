@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchCountry } from "./api/country.api";
+import { fetchCountries } from "./api/country.api";
 import CountryList from "./components/CountryList";
 import { ExtendedCountry } from "./types/types";
 import CountryCard from "./components/CountryCard";
@@ -9,7 +9,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchCountry();
+      const data = await fetchCountries();
       const extendedData = data.map((country) => ({
         ...country,
         isSelected: false,

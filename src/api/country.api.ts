@@ -3,10 +3,7 @@ import { Country } from "../types/types";
 
 export const fetchCountries = async (): Promise<Country[]> => {
   try {
-    const res = await axios.get<Country[]>(
-      import.meta.env.VITE_COUNTRY_API_URL
-    );
-
+    const res = await axios.get(import.meta.env.VITE_COUNTRY_API_URL);
     return res.data;
   } catch (err) {
     console.log(err);

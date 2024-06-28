@@ -48,7 +48,7 @@ const App: React.FC = () => {
         <div>
           <h1 className="text-3xl font-bold text-center mb-8">Countries</h1>
           <CountryList
-            countries={unselectedCountries}
+            unselectedCountries={unselectedCountries}
             handleCountryClick={handleCountryClick}
           />
         </div>
